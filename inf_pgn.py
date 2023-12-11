@@ -40,7 +40,7 @@ image_list_inp = image_list_inp[:5]
 # sys.exit(2)
 N_CLASSES = 20
 NUM_STEPS = len(image_list_inp)
-RESTORE_FROM = './checkpoint/CIHP_pgn'
+RESTORE_FROM = 'checkpoint'
 
 
 def main():
