@@ -207,7 +207,7 @@ def main():
 
         parsing_im = Image.fromarray(msk[0])
         # print("here")
-        parsing_im.save('{}/{}_vis.png'.format(parsing_dir, img_id))
+        #parsing_im.save('{}/{}_vis.png'.format(parsing_dir, img_id))
         cv2.imwrite('{}/{}.png'.format(parsing_dir, img_id), parsing_[0,:,:,0])
         # sio.savemat('{}/{}.mat'.format(parsing_dir, img_id), {'data': scores[0,:,:]})
         
