@@ -35,8 +35,6 @@ image_list_inp = []
 for i in glob(os.path.join(args.directory, '**'), recursive=True):
     if os.path.isfile(i):
         image_list_inp.append(i)
-# print(image_list)
-image_list_inp = image_list_inp[:5]
 # sys.exit(2)
 N_CLASSES = 20
 NUM_STEPS = len(image_list_inp)
@@ -214,7 +212,7 @@ def main():
         # sio.savemat('{}/{}.mat'.format(parsing_dir, img_id), {'data': scores[0,:,:]})
         
         cv2.imwrite('{}/{}.png'.format(edge_dir, img_id), edge_[0,:,:,0] * 255)
-        print("here")
+        print(f"Done with image {step}")
 
     # res_mIou = mIoU.eval(session=sess)
     # res_macc = macc.eval(session=sess)
