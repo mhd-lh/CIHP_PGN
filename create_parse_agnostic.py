@@ -39,7 +39,7 @@ def get_im_parse_agnostic(im_parse, pose_data, w=768, h=1024):
 
 
 if __name__ =="__main__":
-    data_path = './test'
+    data_path   = '/workspace/CIHP_PGN/datasets/output/cihp_parsing_maps'
     output_path = '/workspace/CIHP_PGN/datasets/output/agnostic'
     
     os.makedirs(output_path, exist_ok=True)
