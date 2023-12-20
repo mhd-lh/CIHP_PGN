@@ -38,7 +38,7 @@ for i in glob(os.path.join(args.directory, '**'), recursive=True):
 # sys.exit(2)
 N_CLASSES = 20
 NUM_STEPS = len(image_list_inp)
-RESTORE_FROM = 'checkpoint'
+RESTORE_FROM = '/workspace/CIHP_PGN/checkpoint'
 
 
 def main():
@@ -193,11 +193,11 @@ def main():
     # if not os.path.exists(edge_dir):
     #     os.makedirs(edge_dir)
     # Iterate over training steps.
-    #print(NUM_STEPS)
+    print(NUM_STEPS)
     for step in range(NUM_STEPS):
         # if step > 100:
         #     break
-        #print(step)
+        print(step)
         parsing_, scores, edge_ = sess.run([pred_all, pred_scores, pred_edge])
         if step % 1 == 0:
             print('step {:d}'.format(step))
