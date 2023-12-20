@@ -9,7 +9,7 @@ import scipy.io as sio
 import cv2
 import argparse
 from glob import glob
-# os.environ["CUDA_VISIBLE_DEVICES"]="0"
+os.environ["CUDA_VISIBLE_DEVICES"]="-1"
 
 import tensorflow as tf
 import numpy as np
@@ -23,11 +23,11 @@ argp = argparse.ArgumentParser(description="Inference pipeline")
 argp.add_argument('-i',
                   '--directory',
                   type=str, help='Path of the input dir',
-                  default='./datasets/images')
+                  default='/workspace/dataset/image')
 argp.add_argument('-o',
                   '--output',
                   type=str, help='Path of the input dir',
-                  default='./datasets/output')
+                  default='/workspace/dataset/image-parse-v3')
 
 args = argp.parse_args()
 
@@ -185,17 +185,19 @@ def main():
     threads = tf.train.start_queue_runners(coord=coord, sess=sess)
 
     # evaluate prosessing
-    parsing_dir = os.path.join(args.output, 'cihp_parsing_maps')
-    if not os.path.exists(parsing_dir):
-        os.makedirs(parsing_dir)
-    edge_dir = os.path.join(args.output, 'cihp_edge_maps')
-    if not os.path.exists(edge_dir):
-        os.makedirs(edge_dir)
+    parsing_dir = args.output
+    # parsing_dir = os.path.join(args.output, 'cihp_parsing_maps')
+    # if not os.path.exists(parsing_dir):
+    #     os.makedirs(parsing_dir)
+    # edge_dir = os.path.join(args.output, 'cihp_edge_maps')
+    # if not os.path.exists(edge_dir):
+    #     os.makedirs(edge_dir)
     # Iterate over training steps.
+    #print(NUM_STEPS)
     for step in range(NUM_STEPS):
         # if step > 100:
         #     break
-        print(step)
+        #print(step)
         parsing_, scores, edge_ = sess.run([pred_all, pred_scores, pred_edge])
         if step % 1 == 0:
             print('step {:d}'.format(step))
@@ -211,7 +213,7 @@ def main():
         cv2.imwrite('{}/{}.png'.format(parsing_dir, img_id), parsing_[0,:,:,0])
         # sio.savemat('{}/{}.mat'.format(parsing_dir, img_id), {'data': scores[0,:,:]})
         
-        cv2.imwrite('{}/{}.png'.format(edge_dir, img_id), edge_[0,:,:,0] * 255)
+        # cv2.imwrite('{}/{}.png'.format(edge_dir, img_id), edge_[0,:,:,0] * 255)
         print(f"Done with image {step}")
 
     # res_mIou = mIoU.eval(session=sess)
