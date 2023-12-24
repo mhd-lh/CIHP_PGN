@@ -9,7 +9,7 @@ import scipy.io as sio
 import cv2
 import argparse
 from glob import glob
-os.environ["CUDA_VISIBLE_DEVICES"]="-1"
+os.environ["CUDA_VISIBLE_DEVICES"]="0"
 
 import tensorflow as tf
 import numpy as np
